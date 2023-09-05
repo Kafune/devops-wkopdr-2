@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/VWUL0L5M)
 # Opdracht week 2: Containerization
 
 Deze week focussen we op containers, het gebruik van Docker, en data binnen DevOps. De hoofdopdracht is het bouwen van een Docker container 'rondom' de (basic) .NET applicatie die je hebt gescaffold bij de opdracht afgelopen week.
