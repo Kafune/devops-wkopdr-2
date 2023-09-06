@@ -49,7 +49,7 @@ Bij Apache wordt dit per folder gedaan waarbij de parent folder vaak meer toelaa
 
 | Server Platform |  |
 |-----------------|--|
-| Status          | Accepted |
+| Status          | Proposed |
 | Context         | Er moet een C# applicatie via het internet bereikbaar worden. Hiervoor moet een Server Platform gekozen worden om de applicatie op te hosten. |
 | Decision        | Nginx |
 | Consequences    | Met Nginx kan een reverse-proxy opgezet worden om toegang te bieden tot de applicatie. Daarbij biedt Nginx ook mogelijkheid tot load-balancing waarmee ook de mogelijkheid er is om meerdere containers met dezelfde features te gebruiken om hoge hoeveelheid requests af te handelen. |
