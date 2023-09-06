@@ -35,3 +35,35 @@ Echter zijn er ook nadelen voor de cloud namelijk:
 
 - Compliance structuren moeten via licentie gewaarborgd worden in plaats van dat je hier zelf op kan aansturen. Denk hierbij bijvoorbeeld aan AVG en/of EU-wetgevingen omtrent datagebruik van rechtsgeldige personen.
 - In sommige gevallen is een strictere greep nodig op welke hardware beschikbaar is voor het uitvoeren van de taken. Denk bijvoorbeeld aan render-farms voor blockbuster-films.
+
+## 11. Upgrade naar gebruik applicatieserver
+
+**Wat is het verschil tussen een webserver en een applicatie-server (zou je ook webserver kunnen gebruiken in deze opdracht)?**
+
+In de basis kan een webserver enkel statische gegevens serveren aan een gebruiker met behulp van simpele HTTP verzoeken. Een applicatieserver kan daarentegen veel meer meer, zoals bijvoorbeeld het communiceren met andere apparaten met andere protocollen of het uitvoeren van businesslogica om dynamische responses te genereren.
+
+Vanaf het moment dat de database gekoppeld wordt om nieuw berekende priemgetallen te vinden en op te slaan is dit niet meer mogelijk met een web-applicatie. Er wordt namelijk dynamisch gezocht naar nieuwe waardes.
+In de oude situatie waarin alleen voor vaste waardes altijd hetzelfde respons terug zou komen zou dit dus wel met een webserver gedaan kunnen worden.
+
+**Wat zijn voordelen/mogelijkheden van een webserver als nginx boven een kale/self hosting applicatie?**
+
+Nginx is een platform voor het opzetten van web-server waarin standaard al veel features in verwerkt zitten als load balancing, reverse proxying en caching. 
+Allerlei van dit soort features zouden met een rechtstreekse deployment zelf moeten worden geïmplementeerd in de applicatie met alle complexiteit van dien.
+
+**Wat is het nadeel/nadelen?**
+
+Nginx heeft de mogelijkheid om modules toe te voegen aan de core functionaliteit. Maar deze modules moeten meegeïnstalleerd worden bij de eerste installatie. Het toevoegen van nieuwe modules aan een bestaande omgeving betekend dus dat deze moet worden hercompileerd.
+Andere tools zoals Apache hebben bijvoorbeeld ondersteunding voor dynamisch modules inladen, waardoor herinstallatie niet nodig is.
+
+Een ander punt is dat de configuratie voor Nginx centraal staat. Dit houdt dus in dat vanaf één punt alle instellingen voor alle subdirectories en daarme mogelijke ook subdomeinen inzichtelijk zijn.
+Bij Apache wordt dit per folder gedaan waarbij de parent folder vaak meer toelaat dan de child-directories waardoor er een inheritence structuur ontstaat van instellingen. Management van opties in een dergelijk systeem wordt wel moeilijker hierdoor.
+
+**ADR**
+
+| Server Platform |  |
+|-----------------|--|
+| Status          | Proposed |
+| Context         | Er moet een C# applicatie via het internet bereikbaar worden. Hiervoor moet een Server Platform gekozen worden om de applicatie op te hosten. |
+| Decision        | Nginx |
+| Consequences    | Met Nginx kan een reverse-proxy opgezet worden om toegang te bieden tot de applicatie. Daarbij biedt Nginx ook mogelijkheid tot load-balancing waarmee ook de mogelijkheid er is om meerdere containers met dezelfde features te gebruiken om hoge hoeveelheid requests af te handelen. |
+| Positions       | **Windows Service** <br/> **Apache** <br/> **Internet Information Services** |
