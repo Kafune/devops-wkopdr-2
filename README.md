@@ -1,4 +1,17 @@
 # Opdracht week 2: Containerization
+## 2. Commando Overlap
+3 Gelijknamige (sub)commando's tussen docker en git:
+
+1. Pull
+    - Git haalt met pull de huidige staat van de remote repository op naar een lokale repository. Git download dan alle bestanden die veranderd zijn sinds de laatste keer dat er een pull is uitgevoerd
+    - Pull binnen Docker download images van de Docker hub. Dit kunnen zowel externe images zijn als images die je zelf hebt gemaakt. Deze images moeten wel in de Docker hub staan. De images worden lokaal opgeslagen, tenzij de images al een keer gepulled zijn. Vaak worden images automatisch gepulled als er een Docker container wordt gerund die afhankelijk is van een bepaalde image.
+2. Push
+   - Pushen binnen git betekent dat alle veranderingen in de repository area naar de remote repository worden gebracht, zodat andere ontwikkelaars deze veranderingen naar hun eigen lokale repository kunnen brengen. Bij eerste gebruik van Git moet de ontwikkelaar zijn credentials instellen bij Git config. Git maakt hierbij gebruik van een SSH of een HTTPS verbinding.
+   - Met push wordt er een lokale Docker image naar een remote repository gezet. In Docker heet dit de Docker registry. De image moet van tevoren aangemaakt zijn met ```Docker build```. Hiervoor moet de gebruiker met een Docker account ingelogd zijn met een Docker account.
+3. Commit
+   - Binnen git worden alle lokale veranderingen van de index area naar de repository area klaargezet. Git maakt dan een nieuwe commit hash aan om de veranderingen op te slaan in de history van de repository. Daarna is het optioneel om de veranderingen te pushen naar de remote repository. Het is mogelijk om meerdere commits aan te maken voordat alles gepushed wordt.
+   - Docker commit maakt vanuit een container een nieuwe image aan. Als een ontwikkelaar een verandering wilt uitvoeren aan een bestaande image, moet deze ook nog getagged worden. Zo kan de Docker hub onderscheid maken tussen de verschillende images. De image zelf hoeft niet per sé gepushed te worden.
+
 
 ## 3. Eigen servers of cloud servers?
 
