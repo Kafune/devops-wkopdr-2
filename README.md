@@ -1,5 +1,41 @@
 # Opdracht week 2: Containerization
-## 2. Commando Overlap
+
+## Van git naar docker
+
+### 1. Git terugblik
+
+Het is mogelijk om een specifiek bestand uit een commit op te halen en over te zetten naar een andere branch. Hiervoor is een specifiekere `git checkout` voor beschikbaar.
+
+```shell
+git checkout [-f|--ours|--theirs|-m|--conflict=<style>] [<tree-ish>] --pathspec-from-file=<file> [--pathspec-file-nul]
+```
+Als er dus op de branch genaamd `test` een `example.txt` zou staan ziet dit er als volgt uit:
+
+```shell
+git checkout test -- example.txt
+```
+
+Vervolgens spring je met checkout over naar de branch waar je het bestand wilt plaatsen en kan met `git add` het bestand worden toegevoegd aan de branch.
+
+```shell
+git add example.txt
+```
+
+Vervolgens hoef je enkel nog een commit te maken om dit bestand over te zetten.
+
+Een andere optie is om een commit te maken waarin enkel het ene bestand is gewijzigd en met `git cherry-pick` de specifieke commit over te zetten in de target-branch. Maar hiermee kunnen mogelijk ook andere bestanden meekomen welke niet bedoeld waren als er toch meer bestanden in de commit gewijzigd zijn.
+
+Het is met deze manier niet mogelijk om bestanden uit een andere repo over te nemen. Wel is het mogelijk om met `git log` een patch te maken van een specifieke file in een andere repo en deze patch met `git am`. Hiervoor zijn specifieke flags nodig om te laten werken:
+
+```shell
+cd projectA/repository
+git log --pretty-email --patch-with-stat --reverse --full-index --binary -- path/to/file_or_folder > tmp/patch
+cd ../../projectB/respository
+git am < tmp/patch
+```
+
+### 2. Commando Overlap
+
 3 Gelijknamige (sub)commando's tussen docker en git:
 
 1. Pull
@@ -11,7 +47,6 @@
 3. Commit
    - Binnen git worden alle lokale veranderingen van de index area naar de repository area klaargezet. Git maakt dan een nieuwe commit hash aan om de veranderingen op te slaan in de history van de repository. Daarna is het optioneel om de veranderingen te pushen naar de remote repository. Het is mogelijk om meerdere commits aan te maken voordat alles gepushed wordt.
    - Docker commit maakt vanuit een container een nieuwe image aan. Als een ontwikkelaar een verandering wilt uitvoeren aan een bestaande image, moet deze ook nog getagged worden. Zo kan de Docker hub onderscheid maken tussen de verschillende images. De image zelf hoeft niet per sé gepushed te worden.
-
 
 ## 3. Eigen servers of cloud servers?
 
