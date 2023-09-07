@@ -9,12 +9,12 @@ public class PrimeContext : DbContext
 
     private string DbPath { get; }
 
+    //TODO: Fetch values from .env
     public PrimeContext()
     {
-        var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        DbPath = Path.Join(path, "primefinding.db");
+        DbPath = "Host=localhost:5432;Username=postgres;Password=secret;Database=primefinding";
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
+        => options.UseNpgsql(DbPath);
 }
