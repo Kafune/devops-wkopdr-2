@@ -9,7 +9,7 @@ Het is mogelijk om een specifiek bestand uit een commit op te halen en over te z
 ```shell
 git checkout [-f|--ours|--theirs|-m|--conflict=<style>] [<tree-ish>] --pathspec-from-file=<file> [--pathspec-file-nul]
 ```
-Als er us op de branch genaamd `test` een `example.txt` zou staan ziet dit er als volgt uit:
+Als er dus op de branch genaamd `test` een `example.txt` zou staan ziet dit er als volgt uit:
 
 ```shell
 git checkout test -- example.txt
@@ -47,7 +47,6 @@ git am < tmp/patch
 3. Commit
    - Binnen git worden alle lokale veranderingen van de index area naar de repository area klaargezet. Git maakt dan een nieuwe commit hash aan om de veranderingen op te slaan in de history van de repository. Daarna is het optioneel om de veranderingen te pushen naar de remote repository. Het is mogelijk om meerdere commits aan te maken voordat alles gepushed wordt.
    - Docker commit maakt vanuit een container een nieuwe image aan. Als een ontwikkelaar een verandering wilt uitvoeren aan een bestaande image, moet deze ook nog getagged worden. Zo kan de Docker hub onderscheid maken tussen de verschillende images. De image zelf hoeft niet per sé gepushed te worden.
-
 
 ## 3. Eigen servers of cloud servers?
 
