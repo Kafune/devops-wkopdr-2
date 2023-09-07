@@ -116,6 +116,88 @@ user: "${POSTGRES_USER}"
 Zo zijn de gevoelige gegevens afgeschermd van de git repository.
 Het is wel handig om een .env.example erin te hebben zodat andere developers weten wat voor soort gegevens er ingevuld moeten worden.
 
+### Veiligheid Docker Container
+De volgende commando's zijn uitgevoerd om de security te verbeteren.
+```
+- docker scan
+- docker scout
+- docker scout quickview
+- docker scout cves <container-name>:latest
+- docker scout recommendations <container-name>:latest
+
+Tussendoor Docker scout updaten
+```
+Het blijkt dat docker scan is vervangen door docker scout, dat zijn eigen commando's heeft. Met docker scout quickview en cves is het mogelijk om de security vulnerabilities te zien, en met docker scout recommendations voor de container kunnen we zien wat we aan die security vulnerabilities kunnen doen. De recommendations geeft aan om simpelweg de base-image te updaten die de Linux container draait.
+
+```
+Recommended fixes for image  webapi-dockerized-app:latest
+
+  Base image is  debian:11-slim
+
+  Name            │  11-slim
+  Digest          │  sha256:0cdee24a156b67861e0ec34a0784be80f3c6ec00f0d1708434395aa58d427d44
+  Vulnerabilities │    0C     0H     0M    25L
+  Pushed          │ 17 hours ago
+  Size            │ 31 MB
+  Packages        │ 139
+  Flavor          │ debian
+  OS              │ 11
+  Slim            │ v
+```
+```
+   12-slim                                 │ Benefits:                                                          │ 17 hours ago │    0C     0H     0M    17L
+  Major OS version update                  │ • Same OS detected                                                 │              │
+          -8
+  Also known as:                           │ • Image is smaller by 2.2 MB                                       │              │
+
+  • 12.1-slim                              │ • Image contains 13 fewer packages                                 │              │
+
+  • bookworm-slim                          │ • Image introduces no new vulnerability but removes 8              │              │
+
+  • bookworm-20230904-slim                 │ • Major OS version update                                          │              │
+
+                                           │ • Tag is using slim variant                                        │              │
+
+                                           │                                                                    │              │
+
+                                           │ Image details:                                                     │              │
+
+                                           │ • Size: 29 MB                                                      │              │
+
+                                           │ • Flavor: debian                                                   │              │
+
+                                           │ • OS: 12                                                           │              │
+
+                                           │ • Slim: v                                                          │              │
+
+                                           │                                                                    │              │
+
+                                           │                                                                    │              │
+
+                                           │                                                                    │              │
+
+```
+
+Dotnet heeft een aantal tags die op een [bepaalde OS](https://hub.docker.com/_/microsoft-dotnet-sdk/) versie draaien. Hiervoor maakte de Dockerfile gebruik van dotnet versie 7.0, dat op Debian 11 draait. Als we nu van die lijst de tag ```7.0-bookworm-slim``` pakken, wordt de image gedraaid op Debian 12. Daarna was er iets met de cache aan de hand, waardoor de verandering niet meteen te zien was. De containers moesten volledig opnieuw gebouwd worden met:
+```
+docker compose up --build --remove-orphans --force-recreate -d
+```
+Door ```docker scout recommendations``` nog een keer uit te voeren, is er te zien dat een aantal security vulnerabilities zijn weggehaald.
+```
+Recommended fixes for image  webapi-dockerized-app:latest
+
+  Base image is  debian:12-slim
+
+  Name            │  12-slim
+  Digest          │  sha256:6f9377128fde3e69e251d0b3c5a7f85f6a20b92ecb81708742c1e153a5c9ce3f
+  Vulnerabilities │    0C     0H     0M    17L
+  Pushed          │ 18 hours ago
+  Size            │ 29 MB
+  Packages        │ 126
+  Flavor          │ debian
+  OS              │ 12
+  Slim            │ v
+```
 ## 11. Upgrade naar gebruik applicatieserver
 
 **Wat is het verschil tussen een webserver en een applicatie-server (zou je ook webserver kunnen gebruiken in deze opdracht)?**
