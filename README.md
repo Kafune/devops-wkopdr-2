@@ -102,6 +102,19 @@ Als gebruiker postgres is het nu mogelijk om een database aan te maken met
 ```
 createdb mydb
 ```
+## 10. Security
+### Aanmaken en toepassen van het ENV bestand
+Ga naar de folder unit-testing-using-dotnet-test.
+Maak een .env bestand aan
+
+Alle hard-coded waarden moeten vervangen worden met de conventie "${ENV_VELD}".
+In het geval van een Postgres gebruiker staat er:
+```
+user: "${POSTGRES_USER}"
+```
+
+Zo zijn de gevoelige gegevens afgeschermd van de git repository.
+Het is wel handig om een .env.example erin te hebben zodat andere developers weten wat voor soort gegevens er ingevuld moeten worden.
 
 ## 11. Upgrade naar gebruik applicatieserver
 
