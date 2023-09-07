@@ -71,6 +71,21 @@ Echter zijn er ook nadelen voor de cloud namelijk:
 - Compliance structuren moeten via licentie gewaarborgd worden in plaats van dat je hier zelf op kan aansturen. Denk hierbij bijvoorbeeld aan AVG en/of EU-wetgevingen omtrent datagebruik van rechtsgeldige personen.
 - In sommige gevallen is een strictere greep nodig op welke hardware beschikbaar is voor het uitvoeren van de taken. Denk bijvoorbeeld aan render-farms voor blockbuster-films.
 
+## 6. Opzet Docker Container
+Ga naar de folder unit-testing-using-dotnet-test.
+
+Bouw met Docker de image met:
+```
+docker build -t <image-name> .
+```
+Draai een Docker container met:
+```
+docker run -it --rm -p 5051:80 --name <name-container> <image-name>
+```
+Gebruik de image-name die bij de vorige stap is gedefinieerd. 
+
+De API is nu te benaderen op [http://localhost:5051/weatherforecast](http://localhost:5051/weatherforecast)
+
 ## 11. Upgrade naar gebruik applicatieserver
 
 **Wat is het verschil tussen een webserver en een applicatie-server (zou je ook webserver kunnen gebruiken in deze opdracht)?**
