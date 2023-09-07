@@ -11,4 +11,11 @@ public class FlawedPrimeService : PrimeService
         
         throw new NotImplementedException("Not fully implemented.");
     }
+    
+    public string IsPrimeText(int getal)
+    {
+        return IsPrime(getal)
+            ? "Het opgevraagde getal is een priemgetal."
+            : "Het opgevraagde getal is geen priemgetal.";
+    }
 }

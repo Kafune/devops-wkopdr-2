@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService.Cli", "PrimeSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService.DAL", "PrimeService.DAL\PrimeService.DAL.csproj", "{B0E55BBF-38A4-493F-9D1B-1149FF4EC612}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService.API", "PrimeService.API\PrimeService.API.csproj", "{7719CB45-5618-4D59-81AC-376D35FACB0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{B0E55BBF-38A4-493F-9D1B-1149FF4EC612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0E55BBF-38A4-493F-9D1B-1149FF4EC612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0E55BBF-38A4-493F-9D1B-1149FF4EC612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7719CB45-5618-4D59-81AC-376D35FACB0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7719CB45-5618-4D59-81AC-376D35FACB0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7719CB45-5618-4D59-81AC-376D35FACB0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7719CB45-5618-4D59-81AC-376D35FACB0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

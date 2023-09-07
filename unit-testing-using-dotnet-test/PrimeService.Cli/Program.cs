@@ -34,6 +34,5 @@ class Program
         }
         
         Console.WriteLine($"{getal} is geen priemgetal.");
-        
     }
 }

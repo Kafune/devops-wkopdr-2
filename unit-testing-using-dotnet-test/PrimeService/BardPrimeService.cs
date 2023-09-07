@@ -21,4 +21,11 @@ public class BardPrimeService : PrimeService
 
         return true;
     }
+
+    public string IsPrimeText(int getal)
+    {
+        return IsPrime(getal)
+            ? "Het opgevraagde getal is een priemgetal."
+            : "Het opgevraagde getal is geen priemgetal.";
+    }
 }
