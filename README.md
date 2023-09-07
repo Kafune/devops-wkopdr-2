@@ -103,6 +103,22 @@ Als gebruiker postgres is het nu mogelijk om een database aan te maken met
 createdb mydb
 ```
 
+## 10. Security
+
+### Dev-opdracht
+
+Het gebruik van EF Core raakt meerdere punten van de FURPS+ attributen, namelijk:
+
+- Funtionality, doordat EF Core een rijke featureset heeft zoals het maken van migraties & het beheren van de state van de database o.b.v. applicatiecode.
+- Reliability, EF Core is als product in een open-source omgeving beter doorgetest en gebugfixed dan een eigenbouw ORM in veel gevallen zal zijn. Dit zal dus ook leiden tot minder fouten in database transacties.
+- Supportability, er is veel documentatie en community-posts beschikbaar voor EF Core waardoor veelvoorkomende fouten snel opgespoord kunnen worden. Ook ondersteund EF Core veel verschillende databases om mee te communiceren middels driver-packages zoals Npgsql voor PostgreSQL.
+
+Het gebruik van (Docker) Containers raakt ook enkele FURPS+ attributen, zoals:
+
+- Functionality, gemaakte Images zijn makkelijk herbruikbaar en te delen over meerdere verschillende systemen zolang de CPU architectuur overeenkomt en de Enginer geïnstalleerd is. Ook kunnen Containers compleet afgescheiden worden van andere processen die er niet bij horen te kunnen op hetzelfde hardware systeem.
+- Performance, Containers kunnen vrij strict gelimiteerd worden wat betreft de resources die ze gebruiken. Hierdoor blijven meer beschikbare resources vrij voor andere containers of processen die deze mogelijk harder nodig hebben. Hierdoor kan het gehele systeem geoptimaliseerd worden om zo efficiënt mogelijk beschikbare resources te delen over meerdere processen.
+- Supportability, 
+
 ## 11. Upgrade naar gebruik applicatieserver
 
 **Wat is het verschil tussen een webserver en een applicatie-server (zou je ook webserver kunnen gebruiken in deze opdracht)?**
