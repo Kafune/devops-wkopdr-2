@@ -86,6 +86,23 @@ Gebruik de image-name die bij de vorige stap is gedefinieerd.
 
 De API is nu te benaderen op [http://localhost:5051/weatherforecast](http://localhost:5051/weatherforecast)
 
+## 8. Toevoeging database
+Voor de database maken wij gebruik van [Postgres](https://hub.docker.com/_/postgres/)
+
+Ga naar de folder unit-testing-using-dotnet-test.
+Bouw en draai de volgende twee containers met: 
+```
+docker compose up -d
+```
+Ga daarna in de bash van de Postgres container met:
+```
+docker exec -it <container-id> bash
+```
+Als gebruiker postgres is het nu mogelijk om een database aan te maken met
+```
+createdb mydb
+```
+
 ## 11. Upgrade naar gebruik applicatieserver
 
 **Wat is het verschil tussen een webserver en een applicatie-server (zou je ook webserver kunnen gebruiken in deze opdracht)?**

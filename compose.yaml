@@ -1,0 +1,14 @@
+services:
+  app:
+    container_name: dotnet-web-test
+    build: .
+    ports: 
+        - 5051:80
+    depends_on: [ postgres ]
+  postgres:
+    image: postgres:latest
+    user: postgres
+    ports:
+        - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
