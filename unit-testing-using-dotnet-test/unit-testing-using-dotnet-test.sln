@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService", "PrimeServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService.Tests", "PrimeService.Tests\PrimeService.Tests.csproj", "{76A1D453-01AE-40A4-B1B7-DD095C1F9D71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeService.Cli", "PrimeService.Cli\PrimeService.Cli.csproj", "{F94825CE-098F-4694-9FC6-BCA922138AB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{76A1D453-01AE-40A4-B1B7-DD095C1F9D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76A1D453-01AE-40A4-B1B7-DD095C1F9D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76A1D453-01AE-40A4-B1B7-DD095C1F9D71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F94825CE-098F-4694-9FC6-BCA922138AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94825CE-098F-4694-9FC6-BCA922138AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F94825CE-098F-4694-9FC6-BCA922138AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94825CE-098F-4694-9FC6-BCA922138AB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
