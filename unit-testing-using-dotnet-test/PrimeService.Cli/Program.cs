@@ -5,7 +5,6 @@ using DAL.Repositories;
 class Program
 {
     private static readonly PrimeService PrimeService = new BardPrimeService();
-    private static readonly PrimeRepository PrimeRepository = new ();
     
     public static void Main(string[] args)
     {
@@ -29,7 +28,6 @@ class Program
         if (isPriemgetal)
         {
             Console.WriteLine($"{getal} is een priemgetal. Getal wordt opgeslagen!");
-            PrimeRepository.Save(getal);
             return;
         }
         

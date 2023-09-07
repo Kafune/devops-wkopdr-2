@@ -1,9 +1,14 @@
-﻿namespace PrimeService;
+﻿using PrimeService.DAL.Repositories;
+
+namespace PrimeService;
 
 using System;
 
 public class BardPrimeService : PrimeService
 {
+    
+    private static readonly PrimeRepository PrimeRepository = new ();
+
     public bool IsPrime(int candidate)
     {
         if (candidate < 2)
@@ -19,6 +24,8 @@ public class BardPrimeService : PrimeService
             }
         }
 
+        PrimeRepository.Save(candidate);
+        
         return true;
     }
 
