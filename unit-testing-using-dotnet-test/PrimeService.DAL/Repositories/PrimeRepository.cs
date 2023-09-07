@@ -19,5 +19,6 @@ public class PrimeRepository
             {
                 Number = priemgetal
             });
+        _primeContext.SaveChanges();
     }
 }

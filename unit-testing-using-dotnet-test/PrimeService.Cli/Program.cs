@@ -1,10 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿namespace PrimeService.Cli;
 
-namespace PrimeService.Cli;
+using DAL.Repositories;
 
 class Program
 {
     private static readonly PrimeService PrimeService = new BardPrimeService();
+    private static readonly PrimeRepository PrimeRepository = new ();
     
     public static void Main(string[] args)
     {
@@ -22,8 +23,17 @@ class Program
             return;
         }
         
-        var isPriemgetal = PrimeService.IsPrime(getal) ? "Ja" : "Nee";
+        var isPriemgetal = PrimeService.IsPrime(getal);
+
         
-        Console.WriteLine($"Is {getal} een priemgetal? -> {isPriemgetal}");
+        if (isPriemgetal)
+        {
+            Console.WriteLine($"{getal} is een priemgetal. Getal wordt opgeslagen!");
+            PrimeRepository.Save(getal);
+            return;
+        }
+        
+        Console.WriteLine($"{getal} is geen priemgetal.");
+        
     }
 }

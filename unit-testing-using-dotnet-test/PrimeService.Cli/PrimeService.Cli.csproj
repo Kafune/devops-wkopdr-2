@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\PrimeService.DAL\PrimeService.DAL.csproj" />
         <ProjectReference Include="..\PrimeService\PrimeService.csproj" />
     </ItemGroup>
 
