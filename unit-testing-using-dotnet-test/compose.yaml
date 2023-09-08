@@ -7,8 +7,6 @@ services:
     depends_on: [ postgres ]
   postgres:
     image: postgres:latest
-    user: postgres
-    ports:
-        - 5432:5432
+    user: "${POSTGRES_USER}"
     environment:
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD="${POSTGRES_PASSWORD}"

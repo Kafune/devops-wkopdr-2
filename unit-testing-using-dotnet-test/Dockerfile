@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0-bookworm-slim AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
@@ -12,7 +12,7 @@ COPY webapi-dockerized/. ./webapi-dockerized/
 WORKDIR /source/webapi-dockerized
 RUN dotnet publish -c release -o /app --no-restore
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+FROM mcr.microsoft.com/dotnet/aspnet:7.0-bookworm-slim
 WORKDIR /app
 COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "webapi-dockerized.dll"]
