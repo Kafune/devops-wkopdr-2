@@ -107,9 +107,6 @@ createdb mydb
 Ga naar de folder unit-testing-using-dotnet-test.
 Maak een .env bestand aan
 
-## 10. Security
-
-
 Alle hard-coded waarden moeten vervangen worden met de conventie "${ENV_VELD}".
 In het geval van een Postgres gebruiker staat er:
 ```
@@ -247,3 +244,12 @@ Bij Apache wordt dit per folder gedaan waarbij de parent folder vaak meer toelaa
 | Decision        | Nginx |
 | Consequences    | Met Nginx kan een reverse-proxy opgezet worden om toegang te bieden tot de applicatie. Daarbij biedt Nginx ook mogelijkheid tot load-balancing waarmee ook de mogelijkheid er is om meerdere containers met dezelfde features te gebruiken om hoge hoeveelheid requests af te handelen. |
 | Positions       | **Windows Service** <br/> **Apache** <br/> **Internet Information Services** |
+
+## 13. Container extern op VPS server
+### Image naar docker registry
+- [API container](https://hub.docker.com/repository/docker/kafune/unit-testing-using-dotnet-test-app/general)
+- [Postgres DB container](https://hub.docker.com/repository/docker/kafune/unit-testing-using-dotnet-test-postgres/general)
+
+We maken voor de VPS server geen gebruik van de images van de docker registry. In plaats daarvan gebruiken we Docker context om via SSH de lokale containers te draaien op de VPS server.
+Op dit moment werkt de database niet, maar de aanvraag gaat wel door. Dit is te zien met Docker compose, en dan de logs binnen de containers te bekijken. De website is [hier](http://145.74.104.91/primes/1) te vinden
+ 
