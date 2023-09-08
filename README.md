@@ -84,7 +84,7 @@ docker run -it --rm -p 5051:80 --name <name-container> <image-name>
 ```
 Gebruik de image-name die bij de vorige stap is gedefinieerd. 
 
-De API is nu te benaderen op [http://localhost:5051/weatherforecast](http://localhost:5051/weatherforecast)
+De API is nu te benaderen op [http://localhost:5051/prime/<getal>](http://localhost:5051/prime/1)
 
 ## 8. Toevoeging database
 Voor de database maken wij gebruik van [Postgres](https://hub.docker.com/_/postgres/)
@@ -253,3 +253,44 @@ Bij Apache wordt dit per folder gedaan waarbij de parent folder vaak meer toelaa
 We maken voor de VPS server geen gebruik van de images van de docker registry. In plaats daarvan gebruiken we Docker context om via SSH de lokale containers te draaien op de VPS server.
 Op dit moment werkt de database niet, maar de aanvraag gaat wel door. Dit is te zien met Docker compose, en dan de logs binnen de containers te bekijken. De website is [hier](http://145.74.104.91/primes/1) te vinden
  
+
+## Reflectie
+
+In de opdracht van deze week zijn enkele punten uit het [CDMM](https://hanaim-devops.github.io/devops/beoordelingsmodel.html#cdmm-basis-tot-gemiddeld) voorbijgekomen, in de kopjes hieronder staat uitgelegd hoe wij deze punten uit het CDMM hebben toegepast in de opdracht.
+
+**OA-103 Dependency Management**
+
+Voor het refactoren van het C# project is gebruik gemaakt van de NuGet package manager. Hiermee zijn verschillende packages toegevoegd aan verschillende projecten zoals:
+
+- EF Core + Npgsql, voor ORM doeleinden met een Postgres Database.
+- ASP.NET Core, voor het maken van een API-endpoint om de applicatie te gebruiken.
+
+Ook zijn er gedurende de week aanpassingen gemaakt aan Dockerfile's. Met name de dependency van het platform waarop de applicatie runt is hierin veranderd.
+Waar in een eerste iteratie een Debian image gebruikt was, is er gedurende de week overgestapt naar een Alpine image om het formaat te beperken.
+
+**BD-203 Build once deploy anywhere**
+
+De Docker Image die gebouwd is van de applicatie is beschikbaar gemaakt om op meerdere omgevingen te kunnen draaien. Gedurende de week is de image ingezet op de systemen van onszelf. Maar ook is deze op een remote VPS gezet waar deze zich gelijk gedraagd als op de lokale machines.
+
+**BD-204 Automatiseer meeste DB wijzigingen**
+
+In het C# project is gebruik gemaakt van Migrations met behulp van EF Core. Deze migrations zorgen ervoor dat met een simpel commando de database up to date gebracht kan worden met de beoogde state.
+
+Hoewel er wel gebruik wordt gemaakt van Migrations is het nog niet verwerkt in de runtime checks van de applicatie. Hierdoor moeten deze nog handmatig of gescript uitgevoerd worden, dit is wel een volgende stap die ondernomen kan worden zodat hiervoor ook geen handmatig werk nodig is.
+
+Om deze laatste rede werkt de remote VPS nog niet geheel naar behoren zodra de API benaderd wordt.
+
+**BD-206 Gescripte config wijzigingen**
+
+Om zoveel mogelijk hardcoded waardes te vermijden in de codebase en in de docker files is er gebruik gemaakt van een .env bestand waarin dit soort waardes vastgelegd kunnen worden.
+Dit bestand wordt niet meegecommit naar de repo behalve de voorbeelden die erbij horen.
+
+In de docker-compose wordt deze gebruikt, maar nog niet in de codebase. Hiervoor moet met name in de DAL nog het e.e.a. aangepast worden om dit juist te laten werken.
+
+**BD-401 Build Bakery**
+
+Op InfoQ was het moeilijk om een definitie te vinden voor de Build Bakery. Echter in dit [artikel](https://thenewstack.io/bakery-foundation-container-images-microservices/) onder het hoofdstuk "Defining the Model of a Bakery" beschrijven dit concept als:
+
+*Het proces van het verkrijgen, bouwen en releasen van machine images om herhaaldelijk deployen van werkende code mogelijk te maken.*
+
+Hoewel hier in deze week nog geen ge-automatiseerd proces voor is opgezet is er wel een eerste stap gemaakt door te beginnen met het maken van eigen images voor zelfgemaakte code. Nadat deze gebuild waren zijn ze op Docker Hub geplaatst, waardoor de images verkrijgbaar waren op de VPS om deze daar te deployen.
