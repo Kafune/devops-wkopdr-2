@@ -6,7 +6,7 @@ services:
         - 5051:80
     depends_on: [ postgres ]
   postgres:
-    image: postgres:latest
+    build: ./db_init
     user: "${POSTGRES_USER}"
     environment:
       - POSTGRES_PASSWORD="${POSTGRES_PASSWORD}" 
