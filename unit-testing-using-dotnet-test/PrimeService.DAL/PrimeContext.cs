@@ -12,7 +12,7 @@ public class PrimeContext : DbContext
     //TODO: Fetch values from .env
     public PrimeContext()
     {
-        DbPath = "Host=localhost:5432;Username=postgres;Password=secret;Database=primefinding";
+        DbPath = "Host=postgres;Username=postgres;Password=secret;Database=primefinding";
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
